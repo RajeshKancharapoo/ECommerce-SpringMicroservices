@@ -39,33 +39,28 @@ public class UserController {
     }
     @PutMapping("addCard")
     public ResponseEntity<String>addCard(@RequestBody @Valid CardDTO cardDTO,@RequestHeader("currUser")String username) throws InvalidActionException {
-        Optional<User>user=userRepo.findByUsername(username);
-        if(user.isEmpty())throw new InvalidActionException("Provide your details in the profile section to perform this action");
+        userRepo.findByUsername(username).orElseThrow(()->new InvalidActionException("Provide your details in the profile section to perform this action"));
         return new ResponseEntity<>(userService.addCard(cardDTO,username),HttpStatus.CREATED);
     }
     @PutMapping ("addAddress")
     public ResponseEntity<String>addAddress(@RequestBody @Valid AddressDTO addressDTO,@RequestHeader("currUser") String username) throws InvalidActionException {
-        Optional<User>user=userRepo.findByUsername(username);
-        if(user.isEmpty())throw new InvalidActionException("Provide your details in the profile section to perform this action");
+        userRepo.findByUsername(username).orElseThrow(()->new InvalidActionException("Provide your details in the profile section to perform this action"));
         return new ResponseEntity<>(userService.addAddress(addressDTO,username),HttpStatus.CREATED);
     }
     @GetMapping("allCards")
     public ResponseEntity<List<Card>>viewAllCards(@RequestHeader("currUser") String username)throws InvalidActionException{
-        Optional<User>user=userRepo.findByUsername(username);
-        if(user.isEmpty())throw new InvalidActionException("Provide your details in the profile section to perform this action");
+        userRepo.findByUsername(username).orElseThrow(()->new InvalidActionException("Provide your details in the profile section to perform this action"));
         return new ResponseEntity<>(userService.viewAllCards(username),HttpStatus.OK);
     }
     @GetMapping("allAddress")
     public ResponseEntity<List<Address>>viewAllAddress(@RequestHeader("currUser") String username) throws InvalidActionException{
-        Optional<User>user=userRepo.findByUsername(username);
-        if(user.isEmpty())throw new InvalidActionException("Provide your details in the profile section to perform this action");
+        userRepo.findByUsername(username).orElseThrow(()->new InvalidActionException("Provide your details in the profile section to perform this action"));
         return new ResponseEntity<>(userService.viewAllAddress(username),HttpStatus.OK);
     }
 
     @PostMapping("book")
     public ResponseEntity<String>bookOrder(@RequestParam String productName,@RequestHeader("currUser") String username) throws ProductNotFound,InvalidActionException {
-        Optional<User>user=userRepo.findByUsername(username);
-        if(user.isEmpty())throw new InvalidActionException("Provide your details in the profile section to perform this action");
+        userRepo.findByUsername(username).orElseThrow(()->new InvalidActionException("Provide your details in the profile section to perform this action"));
         return new ResponseEntity<>(userService.bookOrder(productName,username),HttpStatus.CREATED);
     }
 
@@ -76,22 +71,19 @@ public class UserController {
 
     @GetMapping("allOrders")
     public ResponseEntity<List<OrderDetails>>viewAllOrders(@RequestHeader("currUser") String username) throws OrdersEmptyException ,InvalidActionException{
-        Optional<User>user=userRepo.findByUsername(username);
-        if(user.isEmpty())throw new InvalidActionException("Provide your details in the profile section to perform this action");
+        userRepo.findByUsername(username).orElseThrow(()->new InvalidActionException("Provide your details in the profile section to perform this action"));
         return new ResponseEntity<>(userService.viewAllOrders(username),HttpStatus.OK);
     }
 
     @GetMapping("order")
     public ResponseEntity<List<Order>>viewOrdersByStatus(@RequestParam String status, @RequestHeader("currUser") String username) throws OrdersEmptyException,InvalidActionException{
-        Optional<User>user=userRepo.findByUsername(username);
-        if(user.isEmpty())throw new InvalidActionException("Provide your details in the profile section to perform this action");
+        userRepo.findByUsername(username).orElseThrow(()->new InvalidActionException("Provide your details in the profile section to perform this action"));
         return new ResponseEntity<>(userService.viewOrdersByStatus(status,username),HttpStatus.OK);
     }
 
     @GetMapping("add")
     public ResponseEntity<String>addToCart(@RequestParam String productName,@RequestHeader("currUser") String username)throws InvalidActionException{
-        Optional<User>user=userRepo.findByUsername(username);
-        if(user.isEmpty())throw new InvalidActionException("Provide your details in the profile section to perform this action");
+        userRepo.findByUsername(username).orElseThrow(()->new InvalidActionException("Provide your details in the profile section to perform this action"));
         return new ResponseEntity<>(userService.addToCart(productName,username),HttpStatus.OK);
     }
 
@@ -101,9 +93,8 @@ public class UserController {
     }
 
     @GetMapping("viewCart")
-    public ResponseEntity<List<Cart>>viewCart(@RequestHeader("currUser") String username) throws CartEmptyException,InvalidActionException {
-        Optional<User>user=userRepo.findByUsername(username);
-        if(user.isEmpty())throw new InvalidActionException("Provide your details in the profile section to perform this action");
+    public ResponseEntity<List<Cart>>viewCart(@RequestHeader("currUser") String username) throws CartEmptyException, InvalidActionException {
+        userRepo.findByUsername(username).orElseThrow(()->new InvalidActionException("Provide your details in the profile section to perform this action"));
         return new ResponseEntity<>(userService.viewCart(username),HttpStatus.OK);
     }
 
