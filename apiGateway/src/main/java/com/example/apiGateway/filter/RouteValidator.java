@@ -12,9 +12,7 @@ public class RouteValidator {
             "/jwt/auth/register",
             "/jwt/auth/login",
             "/jwt/auth/validateTkn",
-            "user/action/allProducts",
-            "product/action/add",
-            "product/action/delete",
+            "api/v1/user/allMovies",
             "/eureka"
     );
 

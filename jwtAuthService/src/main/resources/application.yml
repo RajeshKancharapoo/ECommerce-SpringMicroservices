@@ -1,2 +1,2 @@
 spring.config.import=configserver:http://localhost:8888
-spring.application.name=api-gateway
+spring.application.name=JwtAuth-service
