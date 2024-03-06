@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="jwtAuthService" />
+        <module name="serviceRegistry" />
+        <module name="cartService" />
+        <module name="orderService" />
+        <module name="apiGateway" />
+        <module name="userService" />
+        <module name="productService" />
+      </profile>
+    </annotationProcessing>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="apiGateway" options="-parameters" />
+      <module name="cartService" options="-parameters" />
+      <module name="jwtAuthService" options="-parameters" />
+      <module name="orderService" options="-parameters" />
+      <module name="productService" options="-parameters" />
+      <module name="serviceRegistry" options="-parameters" />
+      <module name="userService" options="-parameters" />
+    </option>
+  </component>
+</project>

@@ -1,3 +1,5 @@
-spring.config.import=configserver:http://localhost:8888
-
-spring.application.name=service-registry
+spring:
+  application:
+    name: service-registry
+  config:
+    import: configserver:http://localhost:8888
